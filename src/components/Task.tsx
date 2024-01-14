@@ -3,8 +3,7 @@ import React, {FormEventHandler, useState} from "react";
 import {ITask} from "@/types/task";
 import {MdEditNote, MdDeleteSweep} from "react-icons/md";
 import Modal from "@/components/Modal";
-import {addTodo, deleteTodo, editTodo} from "@/api";
-import {v4 as uuidv4} from "uuid";
+import {deleteTodo, editTodo} from "@/api";
 import {useRouter} from "next/navigation";
 
 interface TaskProps {

@@ -5,7 +5,6 @@ import Modal from "@/components/Modal";
 import {addTodo} from "@/api";
 import {useRouter} from "next/navigation";
 import {v4 as uuidv4} from 'uuid'
-import task from "@/components/Task";
 
 
 
