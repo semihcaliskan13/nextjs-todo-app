@@ -1,6 +1,6 @@
 import React from "react";
 import {ITask} from "@/types/task";
-import Task from "@/app/components/Task";
+import Task from "@/components/Task";
 
 interface TodoListProps {
     tasks: ITask[]
@@ -19,6 +19,7 @@ const TodoList: React.FC<TodoListProps> = ({tasks}) => {
                 </thead>
                 <tbody>
                 {tasks.map(task => (
+                    // eslint-disable-next-line react/jsx-key
                     <Task task={task}/>
                 ))}
 

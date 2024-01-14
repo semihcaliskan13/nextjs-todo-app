@@ -1,14 +1,28 @@
 "use client";
 import React, {FormEventHandler, useState} from "react";
 import {MdOutlineDownloadDone} from "react-icons/md";
-import Modal from "@/app/components/Modal";
+import Modal from "@/components/Modal";
+import {addTodo} from "@/api";
+import {useRouter} from "next/navigation";
+import {v4 as uuidv4} from 'uuid'
+import task from "@/components/Task";
+
 
 
 const AddTask = () => {
+    const router = useRouter();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [taskValue, setTaskValue] = useState<string>('');
 
-    const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = (e) => {
+    const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
+        await addTodo({
+            id: uuidv4().toString(),
+            text: taskValue
+        })
+        setTaskValue("");
+        setModalOpen(false);
+        router.refresh();
     };
 
     return (
@@ -22,6 +36,8 @@ const AddTask = () => {
                     <h3 className="font-bold text-lg">add new task.</h3>
                     <div className="modal-action">
                         <input
+                            value={taskValue}
+                            onChange={e=> setTaskValue(e.target.value)}
                             type='text'
                             placeholder='add task'
                             className='input input-bordered w-full'
